@@ -23,7 +23,6 @@ const filterData = (keyword, data) => {
 
 export default function FilterElement(props) {
   const classes = useStyles();
-  //const [keyword, setKeyword] = React.useState("");
   const [checkedItems, setCheckedItems] = props.stateCheckedItems;
   const [keywords, setKeywords] = props.stateKeywords;
   const data = props.data;
@@ -47,13 +46,7 @@ export default function FilterElement(props) {
 
   return (
     <>
-      <TextField
-        label="選択肢を絞り込む"
-        variant="outlined"
-        size="small"
-        onChange={event => handleInput(event)}
-        value={keywords[columnName]}
-      />
+
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
           {filteredData.map((item, index) => {

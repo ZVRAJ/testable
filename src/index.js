@@ -14,7 +14,6 @@ function App() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Menubar />
       <Content />
     </div>
   );

@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   filterListIcon: {
     verticalAlign: "middle",
-    marginLeft: "5px"
+    marginLeft: "3px"
   }
 }));
 

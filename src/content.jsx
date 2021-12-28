@@ -35,44 +35,28 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(id, name, placeFrom, placeTo) {
-  return { id, name, placeFrom, placeTo };
+function createData(book, name, brand, Location, Sales) {
+  return { book, name, brand, Location, Sales };
 }
 
 const rows = [
-  createData("1", "H", "東京", "信濃町"),
-  createData("2", "Y", "埼玉", "信濃町"),
-  createData("3", "M", "東京", "信濃町"),
-  createData("4", "K", "埼玉", "拝島"),
-  createData("5", "N", "東京", "拝島")
+  createData(<a href="https://www.choicehotels.com">Brand Page</a>, "Comfort Inn", "Choice", "Location", <a href="https://www.choicehotels.com">Sales</a>),
+  createData(<a href="https://www.choicehotels.com">Brand Page</a>, "Comfort Inn", "Choice", "Location", <a href="https://www.choicehotels.com">Sales</a>),
+  createData(<a href="https://www.choicehotels.com">Brand Page</a>, "Comfort Inn", "Choice", "Location", <a href="https://www.choicehotels.com">Sales</a>),
+  createData(<a href="https://www.choicehotels.com">Brand Page</a>, "Comfort Inn", "Choice", "Location", <a href="https://www.choicehotels.com">Sales</a>),
+  createData(<a href="https://www.choicehotels.com">Brand Page</a>, "Comfort Inn", "Choice", "Location", <a href="https://www.choicehotels.com">Sales</a>),
 ];
 
 const getColumns = rows => {
   return {
-    id: Array.from(new Set(rows.map(row => row.id))),
+    book: Array.from(new Set(rows.map(row => row.book))),
     name: Array.from(new Set(rows.map(row => row.name))),
-    placeFrom: Array.from(new Set(rows.map(row => row.placeFrom))),
-    placeTo: Array.from(new Set(rows.map(row => row.placeTo)))
+    brand: Array.from(new Set(rows.map(row => row.brand))),
+    Location: Array.from(new Set(rows.map(row => row.Location))),
+    Sales: Array.from(new Set(rows.map(row => row.Sales)))
   };
 };
 
-/* OR検索
-const filterRows = (obj, rows) => {
-  const filtered = rows.filter(row => {
-    const keys = Object.keys(row);
-    const matched = keys.filter(key => {
-      return obj[key].some(item => {
-        return (
-          item !== "" && item != null && String(row[key]).indexOf(item) > -1
-        );
-      });
-    });
-    return matched.length !== 0;
-  });
-  return filtered;
-};
-*/
-// AND検索
 const filterRows = (obj, rows) => {
   const keys = Object.keys(obj);
 
@@ -96,16 +80,18 @@ const filterRows = (obj, rows) => {
 export default function Content() {
   const classes = useStyles();
   const [checkedItems, setCheckedItems] = React.useState({
-    id: [],
+    book: [],
     name: [],
-    placeFrom: [],
-    placeTo: []
+    brand: [],
+    Location: [],
+    Sales: []
   });
   const [keywords, setKeywords] = React.useState({
-    id: "",
+    book: "",
     name: "",
-    placeFrom: "",
-    placeTo: ""
+    brand: "",
+    Location: "",
+    Sales: ""
   });
 
   const filteredRows = filterRows(checkedItems, rows);
@@ -116,17 +102,17 @@ export default function Content() {
       <Table className={classes.table} aria-label="table-filterable">
         <TableHead className={classes.tableHead}>
           <TableRow>
-            <TableCell align="center">
-              ID
+             <TableCell align="center">
+              
               <PopupFilter
                 stateCheckedItems={[checkedItems, setCheckedItems]}
                 stateKeywords={[keywords, setKeywords]}
-                data={filteredColumns.id}
-                columnName="id"
+                data={filteredColumns.book}
+                columnName="book"
               />
             </TableCell>
             <TableCell align="center">
-              NAME
+
               <PopupFilter
                 stateCheckedItems={[checkedItems, setCheckedItems]}
                 stateKeywords={[keywords, setKeywords]}
@@ -135,21 +121,28 @@ export default function Content() {
               />
             </TableCell>
             <TableCell align="center">
-              FROM
+
               <PopupFilter
                 stateCheckedItems={[checkedItems, setCheckedItems]}
                 stateKeywords={[keywords, setKeywords]}
-                data={filteredColumns.placeFrom}
-                columnName="placeFrom"
+                data={filteredColumns.brand}
+                columnName="brand"
               />
             </TableCell>
             <TableCell align="center">
-              TO
               <PopupFilter
                 stateCheckedItems={[checkedItems, setCheckedItems]}
                 stateKeywords={[keywords, setKeywords]}
-                data={filteredColumns.placeTo}
-                columnName="placeTo"
+                data={filteredColumns.Location}
+                columnName="Location"
+              />
+            </TableCell>
+            <TableCell align="center">
+              <PopupFilter
+                stateCheckedItems={[checkedItems, setCheckedItems]}
+                stateKeywords={[keywords, setKeywords]}
+                data={filteredColumns.Sales}
+                columnName="Sales"
               />
             </TableCell>
           </TableRow>
@@ -157,10 +150,11 @@ export default function Content() {
         <TableBody>
           {filteredRows.map((row, index) => (
             <TableRow key={index}>
-              <TableCell align="center">{row.id}</TableCell>
-              <TableCell align="center">{row.name} </TableCell>
-              <TableCell align="center">{row.placeFrom}</TableCell>
-              <TableCell align="center">{row.placeTo}</TableCell>
+              <TableCell align="center">{row.book}</TableCell>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{row.brand} </TableCell>
+              <TableCell align="center">{row.Location}</TableCell>
+              <TableCell align="center">{row.Sales}</TableCell>
             </TableRow>
           ))}
         </TableBody>
