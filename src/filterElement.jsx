@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  TextField,
   Checkbox,
   FormControl,
   FormGroup,
@@ -40,9 +39,9 @@ export default function FilterElement(props) {
     setCheckedItems({ ...checkedItems, [propName]: newCheckedArray });
   };
 
-  const handleInput = event => {
-    setKeywords({ ...keywords, [columnName]: event.target.value });
-  };
+  // const handleInput = event => {
+  //   setKeywords({ ...keywords, [columnName]: event.target.value });
+  // };
 
   return (
     <>
